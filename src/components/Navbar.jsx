@@ -1,7 +1,7 @@
 import { Button, Stack } from "@mui/material";
 import logo from "../assets/logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
-// import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 // import { Link } from "react-router-dom";
 import Search from "./Search";
@@ -14,26 +14,6 @@ const Navbar = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-  const largeScreen = windowWidth > 1024;
-
-  const changeWidth = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-
-    window.addEventListener("resize", changeWidth);
-
-    return () => {
-      window.removeEventListener("resize", changeWidth);
-    };
-  }, []);
-
-
   const links = [
     "Home",
     "Hardware",
@@ -43,26 +23,57 @@ const Navbar = () => {
     "Support",
   ];
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+  const largeScreen = windowWidth > 1024;
+
+  
+  useEffect(() => {
+    const changeWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    const handleMenuClick = (event)=>{
+      const elementsToNotCloseMenu = [...links.map(link=>document.getElementById(link)),document.getElementById('menu-btn'), document.getElementById('menu-bar')];
+      
+      if(!elementsToNotCloseMenu.includes(event.target))
+      {
+        setMenuOpen(false);
+      }
+    }
+
+    window.addEventListener("resize", changeWidth);
+    document.addEventListener('click', handleMenuClick);
+    
+    return () => {
+      window.removeEventListener("resize", changeWidth);
+      document.removeEventListener('click', handleMenuClick);
+    };
+  }, []);
+
   const linkStyle = {
     display: menuOpen ? "flex" : "none",
     position: "absolute",
-    alignContent: "center",
-    left: "0",
-    justifyContent: "center",
+    right: "0",
     flexDirection: "column",
-    top: menuOpen ? "62px" : "-350px",
-    width: "100%",
+    top: menuOpen ? "60px" : "-350px",
+    width: "40%",
+    backgroundColor: 'black',
+    borderRadius: '0px 0px 0px 10px',
+    padding: '20px'
   };
 
   return (
     <Stack
       sx={{
         position: "absolute",
-        p: "30px",
+        p: "30px 10px",
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
         height: { xs: "40px", lg: "50px" },
+        backgroundColor: menuOpen? 'black':'transparent',
       }}
       direction="row"
     >
@@ -74,11 +85,13 @@ const Navbar = () => {
         <Stack
           direction="row"
           gap="20px"
+          id='menu-bar'
           sx={!largeScreen ? linkStyle : { position: "relative" }}
         >
           {links.map((element) => (
             <Button
               key={element}
+              id={element}
               onClick={() => {
                 setCurrentNavlink(element);
               }}
@@ -102,12 +115,13 @@ const Navbar = () => {
         <Search largeScreen={largeScreen}/>
 
         <Button
+          id="menu-btn"
           sx={{ display: largeScreen ? "none" : "block" }}
           onClick={() => {
             toggleMenu();
           }}
         >
-          <MenuIcon />
+          {menuOpen? <MenuOpenIcon style={{fill: '#27f026', pointerEvents: 'none'}}/>: <MenuIcon style={{pointerEvents: 'none'}}/>}
         </Button>
       </Stack>
     </Stack>
