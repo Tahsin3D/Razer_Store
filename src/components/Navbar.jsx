@@ -70,7 +70,7 @@ const Navbar = () => {
     <Stack
       sx={{
         position: "absolute",
-        padding: '40px 70px',
+        padding: largeScreen? '40px 70px': '30px 10px',
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
@@ -120,18 +120,9 @@ const Navbar = () => {
           <IconBtn
             id={"menu-btn"}
             on_Click={toggleMenu}
-            icon={menuOpen ? (<MenuOpenIcon style={{ fill: "#27f026", pointerEvents: "none" }}/>) : (<MenuIcon style={{ pointerEvents: "none" }} />)}
+            icon={menuOpen ? (<MenuOpenIcon style={{ fill: "#27f026", pointerEvents: "none" }}/>) : (<MenuIcon style={{ pointerEvents: "none", fill: 'gray' }} />)}
           />
         </Box>
-        {/* <Button
-          id="menu-btn"
-          sx={{ display: largeScreen ? "none" : "block" }}
-          onClick={() => {
-            toggleMenu();
-          }}
-        >
-          {menuOpen? <MenuOpenIcon style={{fill: '#27f026', pointerEvents: 'none'}}/>: <MenuIcon style={{pointerEvents: 'none'}}/>}
-        </Button> */}
       </Stack>
     </Stack>
   );

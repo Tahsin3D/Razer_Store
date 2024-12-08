@@ -75,7 +75,7 @@ const ProductCarousal = () => {
           />
         ))}
         </Box>
-        <IconBtn icon={<ArrowDown/>} on_Click={handleArrowDown}/>
+        <IconBtn icon={<ArrowDown sx={{fill: 'gray'}}/>} on_Click={handleArrowDown}/>
         <Stack direction='row'>
         <IconButton href="/">
           <FacebookIcon/>
