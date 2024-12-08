@@ -1,15 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-function App() {
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar, Footer, HomePage } from "./utils";
 
+function App() {
   return (
-    <>
-    <Navbar/>
-    <Hero/>
-    </>
-  )
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
