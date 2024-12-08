@@ -3,6 +3,7 @@ import { Button, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import SearchOffIcon from '@mui/icons-material/SearchOff';
+import IconBtn from "./IconBtn";
 
 const Search = ({ largeScreen }) => {
   const [showSearch, setShowSearch] = useState(false);
@@ -56,13 +57,14 @@ const Search = ({ largeScreen }) => {
         overflow: "hidden",
         display: "flex",
         alignItems: "stretch",
+        paddingLeft: '20px'
       }}
     >
       <Paper
         id="search-paper"
         sx={{
           position: "absolute",
-          right: largeScreen ? "30px" : "25px",
+          right: largeScreen ? "30px" : "10px",
           top: largeScreen ? "66px" : "56px",
           display: showSearch ? "flex" : "none",
           backgroundColor: "transparent",
@@ -93,9 +95,7 @@ const Search = ({ largeScreen }) => {
           Search
         </Button>
       </Paper>
-      <Button id="search-btn" onClick={revealSearch_search} sx={{}}>
-        {showSearch?<SearchOffIcon sx={{fill: '#27f026'}}/>:<SearchIcon sx={{ pointerEvents: "none" }} />}
-      </Button>
+      <IconBtn id={'search-btn'} icon={showSearch?<SearchOffIcon sx={{fill: '#27f026'}}/>:<SearchIcon sx={{ pointerEvents: "none" }} />} on_Click={revealSearch_search}/>
     </form>
   );
 };

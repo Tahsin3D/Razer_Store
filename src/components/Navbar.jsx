@@ -1,4 +1,4 @@
-import { Button, Stack } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import logo from "../assets/logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
@@ -6,9 +6,9 @@ import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 // import { Link } from "react-router-dom";
 import Search from "./Search";
 import { useEffect, useState } from "react";
+import IconBtn from "./IconBtn";
 
 const Navbar = () => {
-
   const [currentNavlink, setCurrentNavlink] = useState("Home");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -28,27 +28,29 @@ const Navbar = () => {
   };
   const largeScreen = windowWidth > 1024;
 
-  
   useEffect(() => {
     const changeWidth = () => {
       setWindowWidth(window.innerWidth);
     };
-    
-    const handleMenuClick = (event)=>{
-      const elementsToNotCloseMenu = [...links.map(link=>document.getElementById(link)),document.getElementById('menu-btn'), document.getElementById('menu-bar')];
-      
-      if(!elementsToNotCloseMenu.includes(event.target))
-      {
+
+    const handleMenuClick = (event) => {
+      const elementsToNotCloseMenu = [
+        ...links.map((link) => document.getElementById(link)),
+        document.getElementById("menu-btn"),
+        document.getElementById("menu-bar"),
+      ];
+
+      if (!elementsToNotCloseMenu.includes(event.target)) {
         setMenuOpen(false);
       }
-    }
+    };
 
     window.addEventListener("resize", changeWidth);
-    document.addEventListener('click', handleMenuClick);
-    
+    document.addEventListener("click", handleMenuClick);
+
     return () => {
       window.removeEventListener("resize", changeWidth);
-      document.removeEventListener('click', handleMenuClick);
+      document.removeEventListener("click", handleMenuClick);
     };
   }, []);
 
@@ -59,21 +61,21 @@ const Navbar = () => {
     flexDirection: "column",
     top: menuOpen ? "60px" : "-350px",
     width: "40%",
-    backgroundColor: 'black',
-    borderRadius: '0px 0px 0px 10px',
-    padding: '20px'
+    backgroundColor: "black",
+    borderRadius: "0px 0px 0px 10px",
+    padding: "20px",
   };
 
   return (
     <Stack
       sx={{
         position: "absolute",
-        p: "30px 10px",
+        padding: '40px 70px',
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
         height: { xs: "40px", lg: "50px" },
-        backgroundColor: menuOpen? 'black':'transparent',
+        backgroundColor: menuOpen ? "black" : "transparent",
       }}
       direction="row"
     >
@@ -85,7 +87,7 @@ const Navbar = () => {
         <Stack
           direction="row"
           gap="20px"
-          id='menu-bar'
+          id="menu-bar"
           sx={!largeScreen ? linkStyle : { position: "relative" }}
         >
           {links.map((element) => (
@@ -97,7 +99,7 @@ const Navbar = () => {
               }}
               style={{
                 position: "relative",
-                color: currentNavlink===element? "#27f026": 'gray',
+                color: currentNavlink === element ? "#27f026" : "gray",
 
                 textUnderlineOffset: "6px",
                 textDecoration:
@@ -112,9 +114,16 @@ const Navbar = () => {
           ))}
         </Stack>
 
-        <Search largeScreen={largeScreen}/>
+        <Search largeScreen={largeScreen} />
 
-        <Button
+        <Box sx={{ display: largeScreen ? "none" : "block", paddingLeft: '16px' }}>
+          <IconBtn
+            id={"menu-btn"}
+            on_Click={toggleMenu}
+            icon={menuOpen ? (<MenuOpenIcon style={{ fill: "#27f026", pointerEvents: "none" }}/>) : (<MenuIcon style={{ pointerEvents: "none" }} />)}
+          />
+        </Box>
+        {/* <Button
           id="menu-btn"
           sx={{ display: largeScreen ? "none" : "block" }}
           onClick={() => {
@@ -122,7 +131,7 @@ const Navbar = () => {
           }}
         >
           {menuOpen? <MenuOpenIcon style={{fill: '#27f026', pointerEvents: 'none'}}/>: <MenuIcon style={{pointerEvents: 'none'}}/>}
-        </Button>
+        </Button> */}
       </Stack>
     </Stack>
   );

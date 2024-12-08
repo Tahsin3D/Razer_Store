@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { products, Btn, ArrowDown, FacebookIcon, XIcon, InstagramIcon } from "../utils";
+import IconBtn from "./IconBtn";
 
 const ProductCarousal = () => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
@@ -14,6 +15,10 @@ const ProductCarousal = () => {
     }
   };
 
+  const handleArrowDown = () => {
+    console.log('arrow-down')
+  }
+  
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentProductIndex(
@@ -25,7 +30,7 @@ const ProductCarousal = () => {
 
   const currentProduct = products[currentProductIndex];
   return (
-    <Box sx={{ padding: "70px", width: "100%" }}>
+    <Box sx={{padding: "70px", width: "100%" }}>
       <Stack
         direction="row"
         sx={{
@@ -35,19 +40,19 @@ const ProductCarousal = () => {
           alignItems: "center",
         }}
       >
-        <Box sx={{}}>
+        <Box sx={{ width: '400px'}}>
           <Typography variant="h2">{currentProduct[0]}</Typography>
-          <Typography>{currentProduct[1]}</Typography>
+          <Typography sx={{padding: '30px 0px'}} variant="body1">{currentProduct[1]}</Typography>
           <Btn text={"VIEW MORE"} />
         </Box>
-        <Box sx={{ width: "400px" }}>
+        <Box sx={{ width: "450px" }}>
           <img width="100%" src={currentProduct[2]} alt={currentProduct[0]} />
         </Box>
       </Stack>
-      <Stack direction="row" sx={{justifyContent: 'space-between'}}>
-        <Box>
+      <Stack direction="row" sx={{justifyContent: 'space-between', alignItems: 'center'}}>
+        <Box sx={{display: 'flex',flexDirection: 'row'}}>
         {Array.from({ length: products.length }).map((element, index) => (
-          <Button
+          <Box
             onClick={() => {
               handleClick(index);
             }}
@@ -60,19 +65,27 @@ const ProductCarousal = () => {
                 backgroundColor: index !== currentProductIndex? "#d0ffd2": '#26f027',
               },
               transition: "background-color 0.3s ease",
-              width: "10px",
-              minWidth: "10px",
-              height: "15px", 
-              borderRadius: "50%",
+              minWidth: "0px",
+              minHeight: "0px",
+              width: "12px",
+              height: "12px", 
+              borderRadius: '50%',
+              cursor: 'pointer'
             }}
           />
         ))}
         </Box>
-        <ArrowDown/>
+        <IconBtn icon={<ArrowDown/>} on_Click={handleArrowDown}/>
         <Stack direction='row'>
+        <IconButton href="/">
           <FacebookIcon/>
+        </IconButton>
+        <IconButton href="/">
           <XIcon/>
+        </IconButton>
+        <IconButton href="/">
           <InstagramIcon/>
+        </IconButton>
         </Stack>
       </Stack>
     </Box>
