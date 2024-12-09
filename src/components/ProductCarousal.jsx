@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { useEffect, useState } from "react";
 import {
   products,
@@ -49,22 +49,29 @@ const ProductCarousal = () => {
   return (
     <Box
       sx={{
-        padding: largeScreen ? "70px" : "20px",
+        padding: largeScreen ? "0px 70px " : "20px",
         width: "100%",
         height: "100%",
+        justifyItems: "center",
       }}
     >
       <Stack
         direction="row"
         sx={{
-          height: "92%",
+          height: "90%",
           justifyContent: "space-between",
           alignItems: "center",
           flexDirection: largeScreen ? "row" : "column",
-          paddingTop: largeScreen ? "0px" : "30px",
+          maxWidth: "1400px",
         }}
       >
-        <Box sx={{width: '50%', height: '100%'}}>
+        <Box
+          sx={{
+            width: largeScreen ? "50%" : "100%",
+            height: largeScreen ? "80%" : "40%",
+            paddingTop: "10px",
+          }}
+        >
           <Typography
             sx={{ fontSize: largeScreen ? "5rem" : "3rem" }}
             variant="h2"
@@ -72,32 +79,56 @@ const ProductCarousal = () => {
             {currentProduct[0].toUpperCase()}
           </Typography>
           <Typography
-            sx={{ paddingBottom: "50px", color: "gray" }}
+            sx={{ paddingBottom: "20px", color: "gray" }}
             variant="body1"
           >
             {currentProduct[1]}
           </Typography>
           <Btn text={"VIEW MORE"} />
         </Box>
-        <Box sx={{ height: largeScreen ? "120%" : "70%" }}>
-          <img height="100%" src={currentProduct[2]} alt={currentProduct[0]} />
+        <Box
+          sx={{
+            width: largeScreen ? "40%" : "100%",
+            maxWidth: largeScreen ? "500px" : "350px",
+            // overflow: "hidden",
+            height: largeScreen ? "80%" : "50%",
+          }}
+        >
+          <img
+            style={{
+              marginTop: "-30px",
+              filter:
+                "drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))",
+            }}
+            width="100%"
+            src={currentProduct[2]}
+            alt={currentProduct[0]}
+          />
         </Box>
       </Stack>
       <Stack
         direction="row"
         sx={{
           justifyContent: "space-between",
-          alignItems: "end",
-          height: "20%",
-          paddingBottom: "0px",
+          alignItems: "center",
+          height: "10%",
+          width: "100%",
+          maxWidth: "1400px",
         }}
       >
-        
-        {!largeScreen && <IconBtn
-          icon={shareBtnExpand? <CloseIcon sx={{fill:'#27f026'}}/>: <ShareIcon />}
-          on_Click={showShareBtn}
-          id={"share-btn"}
-        />}
+        {!largeScreen && (
+          <IconBtn
+            icon={
+              shareBtnExpand ? (
+                <CloseIcon sx={{ fill: "#27f026" }} />
+              ) : (
+                <ShareIcon />
+              )
+            }
+            on_Click={showShareBtn}
+            id={"share-btn"}
+          />
+        )}
         <Box sx={{ display: "flex", flexDirection: "row" }}>
           {Array.from({ length: products.length }).map((element, index) => (
             <Box
@@ -130,11 +161,11 @@ const ProductCarousal = () => {
         />
         <Stack
           direction="row"
-          sx={{ 
-            position: largeScreen ? "relative" : "absolute", 
-            flexDirection: largeScreen? 'row': 'column',
-            paddingBottom: largeScreen? '0': '50px',
-            display: largeScreen?'flex': shareBtnExpand? 'flex': 'none'
+          sx={{
+            position: largeScreen ? "relative" : "absolute",
+            flexDirection: largeScreen ? "row" : "column",
+            paddingBottom: largeScreen ? "0" : "160px",
+            display: largeScreen ? "flex" : shareBtnExpand ? "flex" : "none",
           }}
         >
           <IconButton href="/">
