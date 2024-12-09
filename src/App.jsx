@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navbar, Footer, HomePage } from "./utils";
-import ScreenSize from "./utils/screenSize";
+import ScreenSize from "./utils/ScreenSize";
 
 function App() {
   return (
