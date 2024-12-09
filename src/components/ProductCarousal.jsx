@@ -57,14 +57,14 @@ const ProductCarousal = () => {
       <Stack
         direction="row"
         sx={{
-          height: "80%",
+          height: "92%",
           justifyContent: "space-between",
           alignItems: "center",
           flexDirection: largeScreen ? "row" : "column",
           paddingTop: largeScreen ? "0px" : "30px",
         }}
       >
-        <Box sx={{}}>
+        <Box sx={{width: '50%', height: '100%'}}>
           <Typography
             sx={{ fontSize: largeScreen ? "5rem" : "3rem" }}
             variant="h2"
@@ -79,7 +79,7 @@ const ProductCarousal = () => {
           </Typography>
           <Btn text={"VIEW MORE"} />
         </Box>
-        <Box sx={{ height: largeScreen ? "80%" : "70%" }}>
+        <Box sx={{ height: largeScreen ? "120%" : "70%" }}>
           <img height="100%" src={currentProduct[2]} alt={currentProduct[0]} />
         </Box>
       </Stack>
