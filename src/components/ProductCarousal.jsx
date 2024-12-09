@@ -68,7 +68,7 @@ const ProductCarousal = () => {
         <Box
           sx={{
             width: largeScreen ? "50%" : "100%",
-            height: largeScreen ? "80%" : "40%",
+            height: largeScreen ? "80%" : "50%",
             paddingTop: "10px",
           }}
         >
@@ -89,14 +89,14 @@ const ProductCarousal = () => {
         <Box
           sx={{
             width: largeScreen ? "40%" : "100%",
-            maxWidth: largeScreen ? "500px" : "350px",
-            // overflow: "hidden",
+            maxWidth: largeScreen ? "400px" : "250px",
             height: largeScreen ? "80%" : "50%",
           }}
         >
           <img
             style={{
-              marginTop: "-30px",
+              pointerEvents: 'none',
+              marginTop: "0px",
               filter:
                 "drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))",
             }}
@@ -114,6 +114,7 @@ const ProductCarousal = () => {
           height: "10%",
           width: "100%",
           maxWidth: "1400px",
+          zIndex: 10
         }}
       >
         {!largeScreen && (
@@ -164,7 +165,7 @@ const ProductCarousal = () => {
           sx={{
             position: largeScreen ? "relative" : "absolute",
             flexDirection: largeScreen ? "row" : "column",
-            paddingBottom: largeScreen ? "0" : "160px",
+            marginBottom: largeScreen ? "0" : "170px",
             display: largeScreen ? "flex" : shareBtnExpand ? "flex" : "none",
           }}
         >
