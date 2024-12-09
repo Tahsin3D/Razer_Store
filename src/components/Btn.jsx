@@ -3,7 +3,7 @@ import { Button } from "@mui/material"
 
 const Btn = ({text}) => {
   return (
-    <Button href="#" sx={{backgroundColor: "#27f026", color: 'black', fontWeight: 'bold', p: '10px 30px'}}>
+    <Button href="#" sx={{backgroundColor: "#27f026", color: 'black', fontWeight: '900', p: '10px 30px'}}>
         {text}
     </Button>
   )

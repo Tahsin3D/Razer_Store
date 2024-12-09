@@ -9,7 +9,8 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [currentNavlink, setCurrentNavlink] = useState("Home");
-  const largeScreen = useSelector((state) => state.largeScreen);
+  const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
+  console.log(largeScreen)
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
@@ -65,12 +66,12 @@ const Navbar = () => {
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
-        height: { xs: "40px", lg: "50px" },
+        height: largeScreen? '50px': "40px",
         backgroundColor: menuOpen ? "black" : "transparent",
       }}
       direction="row"
     >
-      <Button to="/" style={{ height: "40px" }}>
+      <Button to="/" style={{ height: largeScreen? "40px" : '35px'}}>
         <img src={logo} alt="logo" style={{ height: "100%" }} />
       </Button>
 

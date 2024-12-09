@@ -10,7 +10,7 @@ const Search = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
-  const largeScreen = useSelector(state=>state.largeScreen)
+  const largeScreen = useSelector(state=>state.screenSizes.largeScreen)
 
   const inputRef = useRef(null);
 

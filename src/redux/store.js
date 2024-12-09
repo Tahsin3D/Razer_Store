@@ -5,7 +5,7 @@ import screenSizeReducer from './screenSizeReducer'
 // Configure store
 const store = configureStore({
   reducer: {
-    largeScreen: screenSizeReducer,
+    screenSizes: screenSizeReducer,
   },
 });
 
