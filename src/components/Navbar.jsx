@@ -2,16 +2,14 @@ import { Box, Button, Stack } from "@mui/material";
 import logo from "../assets/logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-
-// import { Link } from "react-router-dom";
 import Search from "./Search";
 import { useEffect, useState } from "react";
 import IconBtn from "./IconBtn";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [currentNavlink, setCurrentNavlink] = useState("Home");
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  const largeScreen = useSelector((state) => state.largeScreen);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
@@ -26,13 +24,8 @@ const Navbar = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-  const largeScreen = windowWidth > 1024;
 
   useEffect(() => {
-    const changeWidth = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
     const handleMenuClick = (event) => {
       const elementsToNotCloseMenu = [
         ...links.map((link) => document.getElementById(link)),
@@ -45,11 +38,9 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener("resize", changeWidth);
     document.addEventListener("click", handleMenuClick);
 
     return () => {
-      window.removeEventListener("resize", changeWidth);
       document.removeEventListener("click", handleMenuClick);
     };
   }, []);
@@ -70,7 +61,7 @@ const Navbar = () => {
     <Stack
       sx={{
         position: "absolute",
-        padding: largeScreen? '40px 70px': '30px 10px',
+        padding: largeScreen ? "40px 70px" : "30px 10px",
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
@@ -114,13 +105,23 @@ const Navbar = () => {
           ))}
         </Stack>
 
-        <Search largeScreen={largeScreen} />
+        <Search/>
 
-        <Box sx={{ display: largeScreen ? "none" : "block", paddingLeft: '16px' }}>
+        <Box
+          sx={{ display: largeScreen ? "none" : "block", paddingLeft: "16px" }}
+        >
           <IconBtn
             id={"menu-btn"}
             on_Click={toggleMenu}
-            icon={menuOpen ? (<MenuOpenIcon style={{ fill: "#27f026", pointerEvents: "none" }}/>) : (<MenuIcon style={{ pointerEvents: "none", fill: 'gray' }} />)}
+            icon={
+              menuOpen ? (
+                <MenuOpenIcon
+                  style={{ fill: "#27f026", pointerEvents: "none" }}
+                />
+              ) : (
+                <MenuIcon style={{ pointerEvents: "none", fill: "gray" }} />
+              )
+            }
           />
         </Box>
       </Stack>

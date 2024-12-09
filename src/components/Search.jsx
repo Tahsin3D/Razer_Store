@@ -4,10 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import SearchOffIcon from '@mui/icons-material/SearchOff';
 import IconBtn from "./IconBtn";
+import { useSelector } from "react-redux";
 
-const Search = ({ largeScreen }) => {
+const Search = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
+  const largeScreen = useSelector(state=>state.largeScreen)
 
   const inputRef = useRef(null);
 
@@ -70,7 +73,7 @@ const Search = ({ largeScreen }) => {
         id="search-paper"
         sx={{
           position: "absolute",
-          right: largeScreen ? "30px" : "10px",
+          right: largeScreen ? "70px" : "10px",
           top: largeScreen ? "66px" : "70px",
           display: showSearch ? "flex" : "none",
           backgroundColor: "transparent",
