@@ -1,7 +1,4 @@
-/* eslint-disable react/prop-types */
 import { Box, IconButton, Stack, Typography } from "@mui/material";
-import ShareIcon from "@mui/icons-material/Share";
-import CloseIcon from "@mui/icons-material/Close";
 import { useEffect, useState } from "react";
 import {
   products,
@@ -10,6 +7,8 @@ import {
   FacebookIcon,
   XIcon,
   InstagramIcon,
+  ShareIcon,
+  CloseIcon
 } from "../utils";
 import IconBtn from "./IconBtn";
 import { useSelector } from "react-redux";
@@ -20,6 +19,7 @@ const ProductCarousal = () => {
   const [shareBtnExpand, setShareBtnExpand] = useState(false);
 
   const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
+  const numberOfProductsToShow = 3;
 
   const handleClick = (index) => {
     if (index !== currentProductIndex) {
@@ -39,7 +39,7 @@ const ProductCarousal = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentProductIndex(
-        (previousIndex) => (previousIndex + 1) % products.length
+        (previousIndex) => (previousIndex + 1) % numberOfProductsToShow
       );
     }, 3000);
     return () => clearInterval(intervalId);
@@ -131,7 +131,7 @@ const ProductCarousal = () => {
           />
         )}
         <Box sx={{ display: "flex", flexDirection: "row" }}>
-          {Array.from({ length: products.length }).map((element, index) => (
+          {Array.from({ length: numberOfProductsToShow }).map((element, index) => (
             <Box
               onClick={() => {
                 handleClick(index);

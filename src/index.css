@@ -15,7 +15,7 @@ body::-webkit-scrollbar {
   }
   
   body::-webkit-scrollbar-thumb {
-    background-color: #26f027; /* Scrollbar color */
+    background-color: #27f026; /* Scrollbar color */
     border-radius: 2px; /* Rounded corners for the scrollbar */
     border: 2px solid #3f3f3f; /* Adds space around the thumb */
   }

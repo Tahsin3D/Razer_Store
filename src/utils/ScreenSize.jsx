@@ -13,7 +13,7 @@ const ScreenSize = () => {
     return () => {
       window.removeEventListener("resize", changeWidth);
     };
-  }, []);
+  }, [dispatch]);
 
   return <div></div>;
 };

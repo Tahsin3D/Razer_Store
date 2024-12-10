@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Button, Stack } from "@mui/material";
 import logo from "../assets/logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -10,7 +11,7 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   const [currentNavlink, setCurrentNavlink] = useState("Home");
   const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
-  console.log(largeScreen)
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
