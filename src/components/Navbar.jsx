@@ -49,7 +49,7 @@ const Navbar = () => {
   }, []);
 
   const handleBackgroundDisplay = () => {
-    window.scrollY > 115
+    window.scrollY > 40
       ? setEnableBackground(true)
       : setEnableBackground(false);
   };

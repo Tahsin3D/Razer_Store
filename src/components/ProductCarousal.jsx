@@ -8,7 +8,7 @@ import {
   XIcon,
   InstagramIcon,
   ShareIcon,
-  CloseIcon
+  CloseIcon,
 } from "../utils";
 import IconBtn from "./IconBtn";
 import { useSelector } from "react-redux";
@@ -16,9 +16,10 @@ import { useSelector } from "react-redux";
 const ProductCarousal = () => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [shareBtnExpand, setShareBtnExpand] = useState(false);
+  const [startXTouch, setStartXTouch] = useState(0);
 
   const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
-  const productsToShow = products.slice(0,3);
+  const productsToShow = products.slice(0, 3);
 
   const handleClick = (index) => {
     if (index !== currentProductIndex) {
@@ -27,23 +28,66 @@ const ProductCarousal = () => {
   };
 
   const handleArrowDown = () => {
-    document.getElementById('product-section').scrollIntoView({ behavior: "smooth", block: "start" });
+    const sectionPosition =
+      document.getElementById("product-section").getBoundingClientRect().top +
+      window.scrollY;
+    const offset = 60; // Adjust for a 60px margin
+    const offsetPosition = sectionPosition - offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
   };
 
   const showShareBtn = () => {
     setShareBtnExpand(!shareBtnExpand);
   };
 
+  const goToNextProduct = () => {
+    setCurrentProductIndex(
+      (previousIndex) => (previousIndex + 1) % productsToShow.length
+    );
+  }
+  
+  const goToPrevProduct = () => {
+    setCurrentProductIndex(
+      (previousIndex) => (previousIndex - 1 + productsToShow.length) % productsToShow.length
+    );
+  }
+  
+
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentProductIndex(
-        (previousIndex) => (previousIndex + 1) % productsToShow.length
-      );
+      goToNextProduct();
     }, 3000);
     return () => clearInterval(intervalId);
   }, [currentProductIndex, productsToShow]);
 
   const currentProduct = productsToShow[currentProductIndex];
+
+  const handleTouchStart = (e) => {
+    setStartXTouch(e.touches[0].clientX);
+  };
+  const handleTouchEnd = () => {
+    setStartXTouch(0);
+  };
+
+  const handleTouchMove = (e) => {
+    const currentX = e.touches[0].clientX;
+
+    if (startXTouch === 0) return;
+
+    const diff = currentX - startXTouch;
+
+    if (diff > 50) {
+      goToPrevProduct();
+      setStartXTouch(0);
+    } else if (diff < -50) {
+      goToNextProduct();
+      setStartXTouch(0);
+    }
+  };
 
   return (
     <Box
@@ -52,7 +96,6 @@ const ProductCarousal = () => {
         width: "100%",
         height: "100%",
         justifyItems: "center",
-        
       }}
     >
       <Stack
@@ -63,8 +106,11 @@ const ProductCarousal = () => {
           alignItems: "center",
           flexDirection: largeScreen ? "row" : "column",
           maxWidth: "1400px",
-          width: '100%',
+          width: "100%",
         }}
+        onTouchStart={(e) => handleTouchStart(e)}
+        onTouchMove={(e) => handleTouchMove(e)}
+        onTouchEnd={(e) => handleTouchEnd(e)}
       >
         <Box
           sx={{
@@ -92,11 +138,15 @@ const ProductCarousal = () => {
             width: largeScreen ? "40%" : "100%",
             maxWidth: largeScreen ? "400px" : "250px",
             height: largeScreen ? "80%" : "50%",
+            userSelect: "none",
+            pointerEvents: "none",
           }}
         >
           <img
             style={{
-              pointerEvents: 'none',
+              userSelect: "none",
+              WebkitUserDrag: "none",
+              pointerEvents: "none",
               marginTop: "0px",
               filter:
                 "drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))",
@@ -115,7 +165,7 @@ const ProductCarousal = () => {
           height: "10%",
           width: "100%",
           maxWidth: "1400px",
-          zIndex: 10
+          zIndex: 10,
         }}
       >
         {!largeScreen && (
@@ -132,30 +182,32 @@ const ProductCarousal = () => {
           />
         )}
         <Box sx={{ display: "flex", flexDirection: "row" }}>
-          {Array.from({ length: productsToShow.length }).map((element, index) => (
-            <Box
-              onClick={() => {
-                handleClick(index);
-              }}
-              key={index}
-              sx={{
-                margin: "5px",
-                backgroundColor:
-                  index === currentProductIndex ? "#26f027" : "white",
-                ":hover": {
+          {Array.from({ length: productsToShow.length }).map(
+            (element, index) => (
+              <Box
+                onClick={() => {
+                  handleClick(index);
+                }}
+                key={index}
+                sx={{
+                  margin: "5px",
                   backgroundColor:
-                    index !== currentProductIndex ? "#d0ffd2" : "#26f027",
-                },
-                transition: "background-color 0.3s ease",
-                minWidth: "0px",
-                minHeight: "0px",
-                width: "12px",
-                height: "12px",
-                borderRadius: "50%",
-                cursor: "pointer",
-              }}
-            />
-          ))}
+                    index === currentProductIndex ? "#26f027" : "white",
+                  ":hover": {
+                    backgroundColor:
+                      index !== currentProductIndex ? "#d0ffd2" : "#26f027",
+                  },
+                  transition: "background-color 0.3s ease",
+                  minWidth: "0px",
+                  minHeight: "0px",
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                }}
+              />
+            )
+          )}
         </Box>
         <IconBtn
           icon={<ArrowDown sx={{ fill: "gray" }} />}
