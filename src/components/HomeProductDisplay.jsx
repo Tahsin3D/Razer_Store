@@ -5,7 +5,7 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useSelector } from "react-redux";
 
-const HomeProductDisplay = ({ product }) => {
+const HomeProductDisplay = ({ product, clickNext, clickPrev }) => {
   const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
   return (
     <Box
@@ -25,18 +25,18 @@ const HomeProductDisplay = ({ product }) => {
           alignItems: "center",
         }}
       >
-        <Box sx={{ width: largeScreen ? "400px" : "80%", 
+        <Box sx={{ width: largeScreen ? "400px" : "100%", 
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
         }}>
-          {!largeScreen && <IconBtn icon={<KeyboardArrowLeftIcon />} />}
+          {!largeScreen && <IconBtn icon={<KeyboardArrowLeftIcon />} on_Click={clickPrev}/>}
           <img width="60%" src={product.image} alt={product.name} />
-          {!largeScreen && <IconBtn icon={<KeyboardArrowRightIcon />} />}
+          {!largeScreen && <IconBtn icon={<KeyboardArrowRightIcon />} on_Click={clickNext}/>}
         </Box>
         <Box
           sx={{
-            padding: "50px",
+            padding: largeScreen?"50px": '50px 0px',
             width: largeScreen ? "70%" : "100%",
             display: "flex",
             flexDirection: "column",
@@ -53,8 +53,8 @@ const HomeProductDisplay = ({ product }) => {
       </Box>
       {largeScreen && (
         <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <IconBtn icon={<KeyboardArrowRightIcon />} />
-          <IconBtn icon={<KeyboardArrowLeftIcon />} />
+          <IconBtn icon={<KeyboardArrowRightIcon />} on_Click={clickNext}/>
+          <IconBtn icon={<KeyboardArrowLeftIcon />} on_Click={clickPrev}/>
         </Box>
       )}
     </Box>
