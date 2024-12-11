@@ -52,6 +52,7 @@ const ProductCarousal = () => {
         width: "100%",
         height: "100%",
         justifyItems: "center",
+        
       }}
     >
       <Stack
@@ -62,6 +63,7 @@ const ProductCarousal = () => {
           alignItems: "center",
           flexDirection: largeScreen ? "row" : "column",
           maxWidth: "1400px",
+          width: '100%',
         }}
       >
         <Box

@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   const [currentNavlink, setCurrentNavlink] = useState("Home");
   const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
+  const [enableBackground, setEnableBackground] = useState(false);
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -47,6 +48,20 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleBackgroundDisplay = () => {
+    window.scrollY > 115
+      ? setEnableBackground(true)
+      : setEnableBackground(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleBackgroundDisplay);
+
+    return () => {
+      window.addEventListener("scroll", handleBackgroundDisplay);
+    };
+  }, []);
+
   const linkStyle = {
     display: menuOpen ? "flex" : "none",
     position: "absolute",
@@ -62,71 +77,90 @@ const Navbar = () => {
   return (
     <Stack
       sx={{
-        position: "absolute",
-        padding: largeScreen ? "40px 70px" : "30px 10px",
-        alignItems: "center",
-        justifyContent: "space-between",
+        position: "fixed",
+        padding: largeScreen ? "30px 70px" : "30px 10px",
         width: "100%",
-        height: largeScreen? '50px': "40px",
-        backgroundColor: menuOpen ? "black" : "transparent",
+        justifyContent: 'center',
+        height: largeScreen ? "50px" : "40px",
+        backgroundColor: enableBackground
+          ? "rgba(22,22,22,1)"
+          : menuOpen
+          ? "rgba(22,22,22,1)"
+          : "rgba(22,22,22,0)",
+        borderBottom: enableBackground
+          ? "1px solid rgba(128,128,128,1)"
+          : "1px solid rgba(255,255,255,0)",
+        zIndex: 100,
+        transition: "all 0.3s ease",
       }}
       direction="row"
     >
-      <Button to="/" style={{ height: largeScreen? "40px" : '35px'}}>
-        <img src={logo} alt="logo" style={{ height: "100%" }} />
-      </Button>
+      <Box sx={{
+        display: 'flex',
+        alignItems: "center",
+        width: '100%',
+        justifyContent: "space-between",
+        maxWidth: '1400px'
+      }}>
+        <Button to="/" style={{ height: largeScreen ? "40px" : "35px" }}>
+          <img src={logo} alt="logo" style={{ height: "100%" }} />
+        </Button>
 
-      <Stack direction="row" alignItems="center">
-        <Stack
-          direction="row"
-          gap="20px"
-          id="menu-bar"
-          sx={!largeScreen ? linkStyle : { position: "relative" }}
-        >
-          {links.map((element) => (
-            <Button
-              key={element}
-              id={element}
-              onClick={() => {
-                setCurrentNavlink(element);
-              }}
-              style={{
-                position: "relative",
-                color: currentNavlink === element ? "#27f026" : "gray",
+        <Stack direction="row" alignItems="center">
+          <Stack
+            direction="row"
+            gap="20px"
+            id="menu-bar"
+            sx={!largeScreen ? linkStyle : { position: "relative" }}
+          >
+            {links.map((element) => (
+              <Button
+                key={element}
+                id={element}
+                onClick={() => {
+                  setCurrentNavlink(element);
+                }}
+                style={{
+                  position: "relative",
+                  color: currentNavlink === element ? "#27f026" : "gray",
 
-                textUnderlineOffset: "6px",
-                textDecoration:
-                  currentNavlink === element ? "underline" : "none",
-                textDecorationThickness:
-                  currentNavlink === element ? "2px" : "0px",
-              }}
-              href="#"
-            >
-              {element}
-            </Button>
-          ))}
+                  textUnderlineOffset: "6px",
+                  textDecoration:
+                    currentNavlink === element ? "underline" : "none",
+                  textDecorationThickness:
+                    currentNavlink === element ? "2px" : "0px",
+                }}
+                href="#"
+              >
+                {element}
+              </Button>
+            ))}
+          </Stack>
+
+          <Search />
+
+          <Box
+            sx={{
+              display: largeScreen ? "none" : "block",
+              paddingLeft: "16px",
+            }}
+          >
+            <IconBtn
+              id={"menu-btn"}
+              on_Click={toggleMenu}
+              icon={
+                menuOpen ? (
+                  <MenuOpenIcon
+                    style={{ fill: "#27f026", pointerEvents: "none" }}
+                  />
+                ) : (
+                  <MenuIcon style={{ pointerEvents: "none", fill: "gray" }} />
+                )
+              }
+            />
+          </Box>
         </Stack>
-
-        <Search/>
-
-        <Box
-          sx={{ display: largeScreen ? "none" : "block", paddingLeft: "16px" }}
-        >
-          <IconBtn
-            id={"menu-btn"}
-            on_Click={toggleMenu}
-            icon={
-              menuOpen ? (
-                <MenuOpenIcon
-                  style={{ fill: "#27f026", pointerEvents: "none" }}
-                />
-              ) : (
-                <MenuIcon style={{ pointerEvents: "none", fill: "gray" }} />
-              )
-            }
-          />
-        </Box>
-      </Stack>
+      </Box>
     </Stack>
   );
 };

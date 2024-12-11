@@ -15,25 +15,32 @@ const HomeProductsSection = () => {
     <Box
       sx={{
         backgroundColor: "rgb(22,22,22)",
-        height: "100vh",
         padding: largeScreen ? "70px" : "20px",
+        alignContent: "center",
+        justifyItems: "center",
       }}
     >
-      <HomeProductDisplay product={products[currentProductIndex]} />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        {extraProductsToShow.map((product) => (
-          <Button sx={{padding:0, width: '22%'}} key={product.id}
-            onClick={()=>{setCurrentProductIndex(product.id-1)}}
-          >
-            <ProductCard product={product} />
-          </Button>
-        ))}
+      <Box sx={{maxWidth: '1400px'}}>
+        <HomeProductDisplay product={products[currentProductIndex]} />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: largeScreen? 'row': "column",
+            justifyContent: "space-between",
+          }}
+        >
+          {extraProductsToShow.map((product) => (
+            <Button
+              sx={{ padding: '10px', width: largeScreen?"22%": '100%' }}
+              key={product.id}
+              onClick={() => {
+                setCurrentProductIndex(product.id - 1);
+              }}
+            >
+              <ProductCard product={product} />
+            </Button>
+          ))}
+        </Box>
       </Box>
     </Box>
   );
