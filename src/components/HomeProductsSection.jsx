@@ -23,6 +23,7 @@ const HomeProductsSection = () => {
 
   return (
     <Box
+      id='product-section'
       sx={{
         backgroundColor: "rgb(22,22,22)",
         padding: largeScreen ? "70px" : "20px",
@@ -46,7 +47,10 @@ const HomeProductsSection = () => {
         >
           {extraProductsToShow.map((product) => (
             <Button
-              sx={{ padding: largeScreen?"10px": '6px', width: largeScreen ? "22%" : "100%" }}
+              sx={{
+                padding: largeScreen ? "10px" : "6px",
+                width: largeScreen ? "22%" : "100%",
+              }}
               key={product.id}
               onClick={() => {
                 setCurrentProductIndex(product.id - 1);

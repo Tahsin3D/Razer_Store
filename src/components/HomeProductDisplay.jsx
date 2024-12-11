@@ -10,7 +10,6 @@ const HomeProductDisplay = ({ product, clickNext, clickPrev }) => {
   return (
     <Box
       sx={{
-        // backgroundColor: "red",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -20,7 +19,6 @@ const HomeProductDisplay = ({ product, clickNext, clickPrev }) => {
         sx={{
           display: "flex",
           paddingLeft: largeScreen ? "100px" : "0px",
-            // backgroundColor: 'red',
           flexDirection: largeScreen ? "row" : "column",
           alignItems: "center",
         }}
@@ -31,7 +29,7 @@ const HomeProductDisplay = ({ product, clickNext, clickPrev }) => {
             alignItems: 'center'
         }}>
           {!largeScreen && <IconBtn icon={<KeyboardArrowLeftIcon />} on_Click={clickPrev}/>}
-          <img width="60%" src={product.image} alt={product.name} />
+          <img width={largeScreen?"100%": '60%'} src={product.image} alt={product.name} />
           {!largeScreen && <IconBtn icon={<KeyboardArrowRightIcon />} on_Click={clickNext}/>}
         </Box>
         <Box

@@ -27,7 +27,7 @@ const ProductCarousal = () => {
   };
 
   const handleArrowDown = () => {
-    console.log("arrow-down");
+    document.getElementById('product-section').scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const showShareBtn = () => {
