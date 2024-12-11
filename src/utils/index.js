@@ -27,49 +27,67 @@ export {MouseImg, HeadphoneImg, SmallKeyboardImg, KeyboardImg, products};
 
 //extra variables
 const products = [
-    [
-      "Razer Mamba Pro",
-      "World's first automated full control mice developed in 2016, Special for gaming.",
-      MouseImg
-    ],
-    [
-      "Razer Kraken X",
-      "Lightweight and comfortable headphones with 7.1 surround sound, launched in 2019.",
-      HeadphoneImg
-    ],
-    [
-      "Razer BlackWidow",
-      "Mechanical gaming keyboard with RGB lighting and customizable keys.",
-      KeyboardImg
-    ],
-    [
-      "Razer Tartarus Pro",
-      "Advanced touchpad with adjustable actuation and 32 programmable keys for gaming.",
-      SmallKeyboardImg
-    ],
-    [
-      "Razer Kraken 7.1",
-      "Immersive headphones with advanced 7.1 surround sound, built for an exceptional gaming experience, launched in 2015.",
-      HeadphonesImg01 // Replace with the actual image variable
-    ],
-    [
-      "Razer Lycosa Mirror",
-      "High-performance gaming keyboard with a glossy finish, backlit keys, and programmable macros, launched in 2008.",
-      KeyboardImg02 // Replace with the actual image variable
-    ],
-    [
-      "Mazer Kraken 21V2",
-      "Professional-grade headset offering ultra-clear audio and 21V2 sound drivers for a crisp and immersive soundscape.",
-      HeadphonesImg02 // Replace with the actual image variable
-    ],
-    [
-      "Razer Mamba Tournament",
-      "High-precision gaming mouse designed for competitive play, featuring customizable RGB lighting and ergonomic design.",
-      MouseImg01 
-    ],
-    [
-      "Razer Firefly Light",
-      "RGB gaming mouse mat with customizable lighting and optimized surface for precise tracking, launched in 2015.",
-      MousePad
-    ]
-  ];
+  {
+    id: 1,
+    name: "Razer Mamba Pro",
+    description: "World's first automated full control mice developed in 2016, Special for gaming.",
+    image: MouseImg,
+    price: 120.99 // Price in USD
+  },
+  {
+    id: 2,
+    name: "Razer Kraken X",
+    description: "Lightweight and comfortable headphones with 7.1 surround sound, launched in 2019.",
+    image: HeadphoneImg,
+    price: 49.99
+  },
+  {
+    id: 3,
+    name: "Razer BlackWidow",
+    description: "Mechanical gaming keyboard with RGB lighting and customizable keys.",
+    image: KeyboardImg,
+    price: 129.99
+  },
+  {
+    id: 4,
+    name: "Razer Tartarus Pro",
+    description: "Advanced touchpad with adjustable actuation and 32 programmable keys for gaming.",
+    image: SmallKeyboardImg,
+    price: 99.99
+  },
+  {
+    id: 5,
+    name: "Razer Kraken 7.1",
+    description: "Immersive headphones with advanced 7.1 surround sound, built for an exceptional gaming experience, launched in 2015.",
+    image: HeadphonesImg01, // Replace with the actual image variable
+    price: 89.99
+  },
+  {
+    id: 6,
+    name: "Razer Lycosa Mirror",
+    description: "High-performance gaming keyboard with a glossy finish, backlit keys, and programmable macros, launched in 2008.",
+    image: KeyboardImg02, // Replace with the actual image variable
+    price: 79.99
+  },
+  {
+    id: 7,
+    name: "Mazer Kraken 21V2",
+    description: "Professional-grade headset offering ultra-clear audio and 21V2 sound drivers for a crisp and immersive soundscape.",
+    image: HeadphonesImg02, // Replace with the actual image variable
+    price: 109.99
+  },
+  {
+    id: 8,
+    name: "Razer Mamba Tournament",
+    description: "High-precision gaming mouse designed for competitive play, featuring customizable RGB lighting and ergonomic design.",
+    image: MouseImg01,
+    price: 99.99
+  },
+  {
+    id: 9,
+    name: "Razer Firefly Light",
+    description: "RGB gaming mouse mat with customizable lighting and optimized surface for precise tracking, launched in 2015.",
+    image: MousePad,
+    price: 59.99
+  }
+];

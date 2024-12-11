@@ -6,6 +6,7 @@ const ScreenSize = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    window.innerWidth >= 1024? dispatch(setScreenLarge(true)): dispatch(setScreenLarge(false))
     const changeWidth = () => {
       dispatch(setScreenLarge(window.innerWidth >= 1024));
     };

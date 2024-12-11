@@ -15,16 +15,14 @@ import { useSelector } from "react-redux";
 
 const ProductCarousal = () => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
-  const [timerCount, setTimerCount] = useState(0);
   const [shareBtnExpand, setShareBtnExpand] = useState(false);
 
   const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
-  const numberOfProductsToShow = 3;
+  const productsToShow = products.slice(0,3);
 
   const handleClick = (index) => {
     if (index !== currentProductIndex) {
       setCurrentProductIndex(index);
-      setTimerCount((prev) => prev + 1);
     }
   };
 
@@ -39,13 +37,14 @@ const ProductCarousal = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentProductIndex(
-        (previousIndex) => (previousIndex + 1) % numberOfProductsToShow
+        (previousIndex) => (previousIndex + 1) % productsToShow.length
       );
     }, 3000);
     return () => clearInterval(intervalId);
-  }, [timerCount]);
+  }, [currentProductIndex, productsToShow]);
 
-  const currentProduct = products[currentProductIndex];
+  const currentProduct = productsToShow[currentProductIndex];
+
   return (
     <Box
       sx={{
@@ -76,13 +75,13 @@ const ProductCarousal = () => {
             sx={{ fontSize: largeScreen ? "5rem" : "3rem" }}
             variant="h2"
           >
-            {currentProduct[0].toUpperCase()}
+            {currentProduct.name}
           </Typography>
           <Typography
             sx={{ paddingBottom: "20px", color: "gray" }}
             variant="body1"
           >
-            {currentProduct[1]}
+            {currentProduct.description}
           </Typography>
           <Btn text={"VIEW MORE"} />
         </Box>
@@ -101,8 +100,8 @@ const ProductCarousal = () => {
                 "drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))",
             }}
             width="100%"
-            src={currentProduct[2]}
-            alt={currentProduct[0]}
+            src={currentProduct.image}
+            alt={currentProduct.name}
           />
         </Box>
       </Stack>
@@ -131,7 +130,7 @@ const ProductCarousal = () => {
           />
         )}
         <Box sx={{ display: "flex", flexDirection: "row" }}>
-          {Array.from({ length: numberOfProductsToShow }).map((element, index) => (
+          {Array.from({ length: productsToShow.length }).map((element, index) => (
             <Box
               onClick={() => {
                 handleClick(index);
