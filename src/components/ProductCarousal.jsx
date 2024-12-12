@@ -120,7 +120,7 @@ const ProductCarousal = () => {
           }}
         >
           <Typography
-            sx={{ fontSize: largeScreen ? "5rem" : "3rem" }}
+            sx={{ fontSize: largeScreen ? "4rem" : "3rem" }}
             variant="h2"
           >
             {currentProduct.name}

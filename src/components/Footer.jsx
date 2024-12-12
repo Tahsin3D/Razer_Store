@@ -60,7 +60,8 @@ const Footer = () => {
               display: "flex",
               gap: "19px",
               textAlign: 'center',
-              flexDirection: largeScreen? 'row': 'column'
+              flexDirection: largeScreen? 'row': 'column',
+              alignItems: 'flex-start'
             }}
             >
             {links.slice(0, 4).map((link) => (
@@ -77,7 +78,8 @@ const Footer = () => {
               display: "flex",
               gap: "19px",
               flexDirection: largeScreen? 'row': 'column',
-              textAlign: 'center'
+              textAlign: 'center',
+              alignItems: 'flex-end'
             }}
           >
             {links.slice(4).map((link) => (
