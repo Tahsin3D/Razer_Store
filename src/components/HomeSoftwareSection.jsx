@@ -63,7 +63,7 @@ const HomeSoftwareSection = () => {
               key={ele.title}
               sx={{
                 width: largeScreen ? "200px" : "100%",
-                height: "150px",
+                height: "130px",
                 border: "1px solid gray",
                 display: "flex",
                 alignItems: "center",

@@ -90,7 +90,7 @@ const Navbar = () => {
           : menuOpen
           ? "rgba(22,22,22,1)"
           : "rgba(22,22,22,0)",
-        borderBottom: enableBackground
+        borderBottom: enableBackground || menuOpen
           ? "1px solid rgba(128,128,128,1)"
           : "1px solid rgba(255,255,255,0)",
         zIndex: 100,

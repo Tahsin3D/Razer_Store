@@ -122,10 +122,12 @@ const CommunitySection = () => {
               position: "relative",
               paddingBottom: '20px',
               marginBottom: '50px',
-            //   backgroundColor:'red',
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box sx={{ display: "flex",
+            alignItems: 'center',
+            paddingBottom: '10px'
+               }}>
               <Typography
                 variant="h6"
                 fontSize="0.8rem"
@@ -133,7 +135,6 @@ const CommunitySection = () => {
                   textAlign: "left",
                   color: "white",
                   fontWeight: "bold",
-                  paddingBottom: '10px'
                 }}
               >
                 {element.title}
