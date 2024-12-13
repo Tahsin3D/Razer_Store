@@ -12,6 +12,7 @@ import {
 } from "../utils";
 import IconBtn from "./IconBtn";
 import { useSelector } from "react-redux";
+import gsap from "gsap";
 
 const ProductCarousal = () => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
@@ -57,6 +58,19 @@ const ProductCarousal = () => {
   }
   
 
+  useEffect(() => {
+    gsap.fromTo(
+      ".fade-in",
+      { opacity: 0, y: 30 }, // Start state: invisible and slightly below
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6, // Animation duration
+        stagger: 0.2, // Delay between elements
+        ease: "power2.out", // Easing function
+      }
+    );
+  },[currentProductIndex])
   useEffect(() => {
     const intervalId = setInterval(() => {
       goToNextProduct();
@@ -122,12 +136,14 @@ const ProductCarousal = () => {
           <Typography
             sx={{ fontSize: largeScreen ? "4rem" : "3rem" }}
             variant="h2"
+            className="fade-in"
           >
             {currentProduct.name}
           </Typography>
           <Typography
             sx={{ paddingBottom: "20px", color: "gray" }}
             variant="body1"
+            className="fade-in"
           >
             {currentProduct.description}
           </Typography>
@@ -143,6 +159,7 @@ const ProductCarousal = () => {
           }}
         >
           <img
+          className="fade-in"
             style={{
               userSelect: "none",
               WebkitUserDrag: "none",
