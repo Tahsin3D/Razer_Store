@@ -118,7 +118,7 @@ const CommunitySection = () => {
             key={element.title}
             sx={{
               flex: 1,
-              maxWidth: largeScreen? "270px": '500px',
+              maxWidth: largeScreen? "300px": '500px',
               position: "relative",
               paddingBottom: '20px',
               marginBottom: '50px',
@@ -133,6 +133,7 @@ const CommunitySection = () => {
                   textAlign: "left",
                   color: "white",
                   fontWeight: "bold",
+                  paddingBottom: '10px'
                 }}
               >
                 {element.title}
