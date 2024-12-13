@@ -26,10 +26,14 @@ const CommunitySection = () => {
         display: 'flex',
         justifyContent: 'center',
         backgroundColor: "rgb(22,22,22)",
-
+        borderBottom: '1px solid gray',
+        
     }}>
         <Box
       sx={{
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
         width: "100%",
         maxWidth: "1400px",
         paddingBottom: "70px",
@@ -101,11 +105,11 @@ const CommunitySection = () => {
         sx={{
           marginTop: "20px",
           overflow: "hidden",
-        //   backgroundColor: 'pink',
           padding: largeScreen?"70px 70px": '50px 20px 0px',
           justifyContent: "space-between",
           alignItems: 'center',
           flexDirection: largeScreen? 'row': 'column',
+          width: '100%'
 
         }}
       >
@@ -143,7 +147,7 @@ const CommunitySection = () => {
           </Box>
         ))}
       </Stack>
-      <Box width="100%" sx={{ display: "flex", justifyContent: "center" }}>
+      <Box width="100%" sx={{ display: "flex", justifyContent: largeScreen?"center": 'left', maxWidth: '500px', width: '90%'}}>
         <Btn text={"JOIN COMMUNITY"} />
       </Box>
     </Box>

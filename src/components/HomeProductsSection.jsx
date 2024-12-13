@@ -29,6 +29,7 @@ const HomeProductsSection = () => {
         padding: largeScreen ? "70px" : "20px",
         alignContent: "center",
         justifyItems: "center",
+        borderBottom: '1px solid gray',
       }}
     >
       <Box sx={{ maxWidth: "1400px" }}>

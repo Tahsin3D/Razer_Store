@@ -29,7 +29,7 @@ const Footer = () => {
           justifyContent: "center",
           justifyItems: "center",
           position: "relative",
-          padding: "0px 70px",
+          padding: largeScreen?"0px 70px": '0px 20px',
           
         }}
       >
