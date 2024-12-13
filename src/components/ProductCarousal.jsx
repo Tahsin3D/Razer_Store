@@ -147,7 +147,9 @@ const ProductCarousal = () => {
           >
             {currentProduct.description}
           </Typography>
-          <Btn text={"VIEW MORE"} />
+          <Box className='fade-in'>
+          <Btn  text={"VIEW MORE"} />
+          </Box>
         </Box>
         <Box
           sx={{
