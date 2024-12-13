@@ -60,7 +60,7 @@ const HomeSoftwareSection = () => {
         >
           {elements.map((ele) => (
             <Box
-              key={ele}
+              key={ele.title}
               sx={{
                 width: largeScreen ? "200px" : "100%",
                 height: "150px",
