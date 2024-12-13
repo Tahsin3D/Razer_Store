@@ -7,6 +7,7 @@ import Search from "./Search";
 import { useEffect, useState } from "react";
 import IconBtn from "./IconBtn";
 import { useSelector } from "react-redux";
+import { BorderLeft } from "@mui/icons-material";
 
 const Navbar = () => {
   const [currentNavlink, setCurrentNavlink] = useState("Home");
@@ -69,9 +70,11 @@ const Navbar = () => {
     flexDirection: "column",
     top: menuOpen ? "60px" : "-350px",
     width: "40%",
-    backgroundColor: "black",
+    backgroundColor: "rgb(22,22,22)",
     borderRadius: "0px 0px 0px 10px",
     padding: "20px",
+    borderLeft: '1px solid gray',
+    borderBottom: '1px solid gray',
   };
 
   return (

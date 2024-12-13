@@ -1,18 +1,38 @@
 import { Box, Stack, Typography } from "@mui/material";
 import bg from "../assets/background.jpg";
 import { useSelector } from "react-redux";
+import Btn from "./Btn";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const CommunitySection = () => {
+  const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
 
-    const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
-
+  const cardDetails = [
+    {
+      title: "BREAKING THE STAGE WITH RAZER",
+      desc: "Join us at the Six Invitational where we'll see new content showcases, developer and community panels.",
+    },
+    {
+      title: "WELCOME TO TEAM RAZER, NEXTBIT!",
+      desc: "We are excited to announce that Nextbit has joined the Razer family! We welcome the highly talented team.",
+    },
+    {
+      title: "THE RAZER BLACKWIDOW CHROMA V2",
+      desc: "The new Razer BlackWidow Chroma V2- now available with the Razer Mechanical Green, Orange and Yellow.",
+    },
+  ];
   return (
-    <Box
+    <Box sx={{width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: "rgb(22,22,22)",
+
+    }}>
+        <Box
       sx={{
         width: "100%",
         maxWidth: "1400px",
-        margin: "0 auto",
-        backgroundColor: "rgb(22,22,22)",
+        paddingBottom: "70px",
       }}
     >
       {/* Background Section */}
@@ -20,12 +40,12 @@ const CommunitySection = () => {
         sx={{
           position: "relative",
           width: "100%",
-          height: "400px",
+          height: "300px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "flex-start",
-          padding: "20px",
+          padding: largeScreen? "70px": '20px',
         }}
       >
         <Box
@@ -47,7 +67,7 @@ const CommunitySection = () => {
               width: "100%",
               height: "100%",
               background:
-                "linear-gradient(to right, rgba(22,22,22, 1) 20%, rgba(22,22,22, 0) 90%)",
+                "linear-gradient(to right, rgba(22,22,22, 1) 30%, rgba(22,22,22, 0) 90%)",
             },
           }}
         />
@@ -55,9 +75,10 @@ const CommunitySection = () => {
         <Typography
           variant="h2"
           sx={{
-            fontSize: largeScreen ? "4rem" : "3rem",
+            fontSize: largeScreen ? "3rem" : "3rem",
             position: "relative",
             zIndex: 1,
+            paddingBottom: "10px",
           }}
         >
           RAZER <br />
@@ -68,7 +89,7 @@ const CommunitySection = () => {
           sx={{
             zIndex: 1,
             color: "#27f026",
-            fontWeight: 'bold'
+            fontWeight: "bold",
           }}
         >
           FROM GAMERS TO GAMERS
@@ -77,33 +98,55 @@ const CommunitySection = () => {
 
       <Stack
         direction="row"
-        spacing={2}
         sx={{
           marginTop: "20px",
           overflow: "hidden",
+        //   backgroundColor: 'pink',
+          padding: largeScreen?"70px 70px": '50px 20px 0px',
+          justifyContent: "space-between",
+          alignItems: 'center',
+          flexDirection: largeScreen? 'row': 'column',
+
         }}
       >
-        <Box
-          sx={{
-            flex: 1,
-            marginLeft: "auto", 
-            maxWidth: "500px",
-            position: "relative",
-          }}
-        >
-          <Typography
-            variant="h6"
+        {cardDetails.map((element) => (
+          <Box
+            key={element.title}
             sx={{
-              textAlign: "right",
-              padding: "10px",
-              color: "#333",
-              fontWeight: "bold",
+              flex: 1,
+              maxWidth: largeScreen? "270px": '500px',
+              position: "relative",
+              paddingBottom: '20px',
+              marginBottom: '50px',
+            //   backgroundColor:'red',
             }}
           >
-            BREAKING THE STAGE WITH RAZER
-          </Typography>
-        </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Typography
+                variant="h6"
+                fontSize="0.8rem"
+                sx={{
+                  textAlign: "left",
+                  color: "white",
+                  fontWeight: "bold",
+                }}
+              >
+                {element.title}
+              </Typography>
+              <KeyboardArrowRightIcon
+                sx={{ fill: "#27f026", marginLeft: "10px" }}
+              />
+            </Box>
+            <Typography variant="body2" sx={{ color: "gray" }}>
+              {element.desc}
+            </Typography>
+          </Box>
+        ))}
       </Stack>
+      <Box width="100%" sx={{ display: "flex", justifyContent: "center" }}>
+        <Btn text={"JOIN COMMUNITY"} />
+      </Box>
+    </Box>
     </Box>
   );
 };

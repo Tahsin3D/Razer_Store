@@ -23,18 +23,29 @@ const HomeProductDisplay = ({ product, clickNext, clickPrev }) => {
           alignItems: "center",
         }}
       >
-        <Box sx={{ width: largeScreen ? "400px" : "100%", 
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-        }}>
-          {!largeScreen && <IconBtn icon={<KeyboardArrowLeftIcon />} on_Click={clickPrev}/>}
-          <img width={largeScreen?"100%": '60%'} src={product.image} alt={product.name} />
-          {!largeScreen && <IconBtn icon={<KeyboardArrowRightIcon />} on_Click={clickNext}/>}
+        <Box
+          sx={{
+            width: largeScreen ? "400px" : "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {!largeScreen && (
+            <IconBtn icon={<KeyboardArrowLeftIcon />} on_Click={clickPrev} />
+          )}
+          <img
+            width={largeScreen ? "100%" : "60%"}
+            src={product.image}
+            alt={product.name}
+          />
+          {!largeScreen && (
+            <IconBtn icon={<KeyboardArrowRightIcon />} on_Click={clickNext} />
+          )}
         </Box>
         <Box
           sx={{
-            padding: largeScreen?"50px": '50px 0px',
+            padding: largeScreen ? "50px" : "50px 0px",
             width: largeScreen ? "70%" : "100%",
             display: "flex",
             flexDirection: "column",
@@ -46,13 +57,15 @@ const HomeProductDisplay = ({ product, clickNext, clickPrev }) => {
           <Typography variant="body1" color="gray">
             {product.description}
           </Typography>
-          <Btn text={"View More"} />
+          <Box width="100%">
+            <Btn text={"VIEW MORE"} />
+          </Box>
         </Box>
       </Box>
       {largeScreen && (
         <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <IconBtn icon={<KeyboardArrowRightIcon />} on_Click={clickNext}/>
-          <IconBtn icon={<KeyboardArrowLeftIcon />} on_Click={clickPrev}/>
+          <IconBtn icon={<KeyboardArrowRightIcon />} on_Click={clickNext} />
+          <IconBtn icon={<KeyboardArrowLeftIcon />} on_Click={clickPrev} />
         </Box>
       )}
     </Box>
