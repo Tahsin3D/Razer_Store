@@ -7,7 +7,7 @@ import Search from "./Search";
 import { useEffect, useState } from "react";
 import IconBtn from "./IconBtn";
 import { useSelector } from "react-redux";
-import { BorderLeft } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [currentNavlink, setCurrentNavlink] = useState("Home");
@@ -105,7 +105,7 @@ const Navbar = () => {
         justifyContent: "space-between",
         maxWidth: '1400px'
       }}>
-        <Button to="/" style={{ height: largeScreen ? "40px" : "35px" }}>
+        <Button component={Link} to="/" style={{ height: largeScreen ? "40px" : "35px" }}>
           <img src={logo} alt="logo" style={{ height: "100%" }} />
         </Button>
 

@@ -11,12 +11,12 @@ const ProductCard = ({ product }) => {
         textAlign: "center",
       }}
     >
-      <img width="60%" src={product.image} alt={product.name} />
+      <img width="70%" src={product.image} alt={product.name} />
       <Typography fontWeight="800" fontSize={14} variant="h5">
         {product.name.toUpperCase()}
       </Typography>
       <Typography
-        sx={{ padding: "10px 0px 20px", color: "#27f026" }}
+        sx={{ padding: "2% 0px 16px", color: "#27f026" }}
         variant="body1"
       >
         Rs. {Math.floor(product.price * 277.83).toLocaleString()}

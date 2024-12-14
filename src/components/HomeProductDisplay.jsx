@@ -58,7 +58,7 @@ const HomeProductDisplay = ({ product, clickNext, clickPrev }) => {
             {product.description}
           </Typography>
           <Box width="100%">
-            <Btn text={"VIEW MORE"} />
+            <Btn to={`/products/${product.name}`} text={"VIEW MORE"} />
           </Box>
         </Box>
       </Box>

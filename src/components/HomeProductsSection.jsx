@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import HomeProductDisplay from "./HomeProductDisplay";
 import { useState } from "react";
 import ProductCard from "./ProductCard";
+import { Link } from "react-router-dom";
 
 const HomeProductsSection = () => {
   const largeScreen = useSelector((state) => state.screenSizes.largeScreen);
@@ -49,7 +50,6 @@ const HomeProductsSection = () => {
           {extraProductsToShow.map((product) => (
             <Button
               sx={{
-                padding: largeScreen ? "10px" : "6px",
                 width: largeScreen ? "22%" : "100%",
               }}
               key={product.id}

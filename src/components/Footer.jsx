@@ -30,7 +30,7 @@ const Footer = () => {
           justifyItems: "center",
           position: "relative",
           padding: largeScreen?"0px 70px": '0px 20px',
-          
+          margin: '0 auto'
         }}
       >
         <img

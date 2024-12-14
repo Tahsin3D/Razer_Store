@@ -13,6 +13,7 @@ const Hero = () => {
         width: "100%",
         height: largeScreen ? "100vh" : "calc(100vh - 50px)",
         borderBottom: '1px solid gray',
+        maxHeight: '1080px',
         background:
           "repeating-linear-gradient(-45deg, #111417 0%,#111417 0.25%, #181a1b 0.25%, #181a1b 0.5%)",
       }}

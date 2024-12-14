@@ -120,6 +120,7 @@ const ProductCarousal = () => {
           alignItems: "center",
           flexDirection: largeScreen ? "row" : "column",
           maxWidth: "1400px",
+          
           width: "100%",
         }}
         onTouchStart={(e) => handleTouchStart(e)}
@@ -148,7 +149,7 @@ const ProductCarousal = () => {
             {currentProduct.description}
           </Typography>
           <Box className='fade-in'>
-          <Btn  text={"VIEW MORE"} />
+          <Btn to={`/products/${currentProduct.name}`}  text={"VIEW MORE"} />
           </Box>
         </Box>
         <Box
